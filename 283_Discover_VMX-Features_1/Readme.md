@@ -1,5 +1,4 @@
-<h1>Assignment 1<br>
-CMPE 283<br><br>
+<h1>
 Discovering VMX Features</h1><br>
 <h2>Question 1 </h2><br>
  <h4>Arselan (me)</h4><br>
