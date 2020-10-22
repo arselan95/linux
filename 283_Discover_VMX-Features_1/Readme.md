@@ -1,21 +1,18 @@
 <h1>Assignment 1<br>
 CMPE 283<br><br>
 Discovering VMX Features</h1><br>
-
 <h2>Question 1 </h2><br>
  <h4>Arselan (me)</h4><br>
  <ul>
  <li>Used VMWare fusion as a Virtual Machine </li><br>
  <li>Researched and built/compiled Linux Kernel source code and got the environment setup. </li><br>
  <li>Implemented 283-1.c file.</li> <br>
- <li>Tested it by loading the new module and verified the output.</li></ul><br>
-  
+ <li>Tested it by loading the new module and verified the output.</li></ul><br> 
 <h4>Rajakumari</h4><br>
 <ul>
 <li>Researched about VMX virtualization features and MSRs. </li><br>
 <li>Researched Intel 64 and IA-32 Architectures Software Developer’s Manual Vol:3C about various VMX configuration MSRs to the capabilities and features as listed in<br> the assignment which were used in the 283-1.c file implementation. </li><br>
  <li>Worked on the 283-1.c file implementation. </li></ul><br>
- 
 <h2>Question 2 : Implementation of the software</h2><br>
 <h4>Configure a Linux Machine.</h4> <br>
 <ul>
@@ -48,8 +45,7 @@ Discovering VMX Features</h1><br>
 <li>Run command ‘make deb-pkg’</li><br>
  <li>Kernel will compile. This process took 5.5 hrs for me.</li> <br>
  <li>Make sure Kernel has compiled successfully. </li></ul><br>
-![Screenshot](5.png)<br>
-
+![Screenshot](5.png)
 <h4>Create a new Linux Kernel module that will query various MSR’s to determine Virtualization features.</h4> <br>
 <ul>
 <li>Inside your LinuxKernel directory create a new directory</li><br>
@@ -59,7 +55,7 @@ Discovering VMX Features</h1><br>
 <li>Add the required functionality. </li><br>
 <li>Download the file ‘cmpe283-1.c’ and ‘makefile’ from the github link provided and run command ‘make’ while you are in the 283assignment1 directory.</li> <br>
 <li>This will create ‘cmpe283-1.ko’ which we will use to load new modules into Kernel.</li></ul><br>
-![Screenshot](6.png)<br>
+![Screenshot](6.png)
  <h4>Load the new module in the Kernel</h4><br>
  <ul>
 <li>Run command ‘sudo insmod ./cmpe283-1.ko’</li><br>
@@ -67,7 +63,6 @@ Discovering VMX Features</h1><br>
 <li>To stop use command ‘sudo rmmod ./cmpe283-1.ko’</li><br>
 <li>Call cleanup_module()</li></ul><br>
 Run command ‘dmesg’ to see syslog. <br>
-
 Output of the module<br>
 ![Screenshot](1.png)
 ![Screenshot](2.png)
