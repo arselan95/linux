@@ -46,6 +46,7 @@ Discovering VMX Features</h1><br>
  <li>Kernel will compile. This process took 5.5 hrs for me.</li> <br>
  <li>Make sure Kernel has compiled successfully. </li></ul><br>
 ![Screenshot](5.png)
+<br>
 <h4>Create a new Linux Kernel module that will query various MSR’s to determine Virtualization features.</h4> <br>
 <ul>
 <li>Inside your LinuxKernel directory create a new directory</li><br>
