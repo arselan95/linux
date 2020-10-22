@@ -1,6 +1,6 @@
 <h1>
 Discovering VMX Features</h1><br>
-<h2>Question 1 :about Team </h2><br>
+<h2>Question 1 :About Team </h2><br>
  <h4>Arselan (me)</h4><br>
  <ul>
  <li>Used VMWare fusion as a Virtual Machine </li><br>
@@ -28,7 +28,7 @@ Discovering VMX Features</h1><br>
 <li>Download Linux Kernel Archive from kernel.org. </li><br>
 <li>Download the tarball file (5.9 used for this assignment)</li><br>
 <li>Install following packages:</li><br>
-<li>Run command ‘sudo apt install build-essential rsync gcc bc bison libssl-dev libncurses5-dev libelf-dev’<br>
+<li>Run command ‘sudo apt install build-essential rsync gcc bc bison libssl-dev libncurses5-dev libelf-dev’</li><br>
 <li>Update grub file </li> <br>
 <li>Run command ‘sudo update-grub’</li></ul><br>
 <h4>Get the Linux Kernel tarball file and untar it</h4><br>
