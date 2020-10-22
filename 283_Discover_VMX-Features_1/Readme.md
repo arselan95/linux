@@ -68,9 +68,10 @@ Run command ‘dmesg’ to see syslog.
 
 Output of the module
 ![Screenshot](1.png)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/2.png?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/3.png?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/4.png?raw=true)
+![Screenshot](2.png)
+![Screenshot](3.png)
+![Screenshot](4.png)
+
 
 
 
