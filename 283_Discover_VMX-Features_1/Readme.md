@@ -45,7 +45,9 @@ Discovering VMX Features</h1><br>
 <li>Run command ‘make deb-pkg’</li><br>
  <li>Kernel will compile. This process took 5.5 hrs for me.</li> <br>
  <li>Make sure Kernel has compiled successfully. </li></ul><br>
+ 
 ![Screenshot](5.png)
+
 <br>
 <h4>Create a new Linux Kernel module that will query various MSR’s to determine Virtualization features.</h4> <br>
 <ul>
@@ -56,7 +58,9 @@ Discovering VMX Features</h1><br>
 <li>Add the required functionality. </li><br>
 <li>Download the file ‘cmpe283-1.c’ and ‘makefile’ from the github link provided and run command ‘make’ while you are in the 283assignment1 directory.</li> <br>
 <li>This will create ‘cmpe283-1.ko’ which we will use to load new modules into Kernel.</li></ul><br>
+
 ![Screenshot](6.png)
+
  <h4>Load the new module in the Kernel</h4><br>
  <ul>
 <li>Run command ‘sudo insmod ./cmpe283-1.ko’</li><br>
@@ -65,6 +69,7 @@ Discovering VMX Features</h1><br>
 <li>Call cleanup_module()</li></ul><br>
 Run command ‘dmesg’ to see syslog. <br>
 Output of the module<br>
+
 ![Screenshot](1.png)
 ![Screenshot](2.png)
 ![Screenshot](3.png)
