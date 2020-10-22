@@ -1,13 +1,16 @@
-<h1>Assignment 1
-CMPE 283
-Discovering VMX Features</h1>
+<h1>Assignment 1<br>
+CMPE 283<br><br>
+Discovering VMX Features</h1><br>
 
-Question 1 <br>
-Arselan (me)<br>
+<h2>Question 1 </h2><br>
+ <h4>Arselan (me)</h4><br>
+ <ul>
+  <li>
 Used VMWare fusion as a Virtual Machine <br>
 Researched and built/compiled Linux Kernel source code and got the environment setup. <br>
 Implemented 283-1.c file. <br>
 Tested it by loading the new module and verified the output.<br>
+  </li>
 Rajakumari<br>
 Researched about VMX virtualization features and MSRs. <br>
 Researched Intel 64 and IA-32 Architectures Software Developer’s Manual Vol:3C about various VMX configuration MSRs to the capabilities and features as listed in<br> the assignment which were used in the 283-1.c file implementation. <br>
