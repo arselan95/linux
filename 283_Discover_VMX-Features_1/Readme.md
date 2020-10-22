@@ -19,9 +19,10 @@ Discovering VMX Features</h1><br>
 <li>Download Ubuntu 20.04<br>
 <li>Create a new VM in VMWare Fusion by dragging the .iso file which will install Ubuntu OS in the VM.</li><br>
 <li>Specs used: </li><br>
+ <ul>
 <li>CPU processor cores: 2</li><br>
 <li>Memory: 4 GB</li><br>
-<li>Disk: 105 GB</li></ul><br>
+  <li>Disk: 105 GB</li></ul></ul><br>
 <h4>Build Linux Kernel Source code</h4><br>
 <ul>
 <li>Download Linux Kernel Archive from kernel.org. </li><br>
