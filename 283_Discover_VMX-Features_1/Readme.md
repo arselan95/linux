@@ -40,7 +40,7 @@ Compile kernel by running this command in your directory.
 Run command ‘make deb-pkg’
 Kernel will compile. This process took 5.5 hrs for me. 
 Make sure Kernel has compiled successfully. 
-
+![Screenshot](5.png)
 
 Create a new Linux Kernel module that will query various MSR’s to determine Virtualization features. 
 Inside your LinuxKernel directory create a new directory
@@ -50,8 +50,7 @@ Run command ‘mkdir cmpe283-1.c’
 Add the required functionality. 
 Download the file ‘cmpe283-1.c’ and ‘makefile’ from the github link provided and run command ‘make’ while you are in the 283assignment1 directory. 
 This will create ‘cmpe283-1.ko’ which we will use to load new modules into Kernel.
-
-
+![Screenshot](6.png)
 Load the new module in the Kernel
 Run command ‘sudo insmod ./cmpe283-1.ko’
 It will call init_module() which will call detect_vmx_features();
@@ -59,21 +58,8 @@ To stop use command ‘sudo rmmod ./cmpe283-1.ko’
 Call cleanup_module()
 Run command ‘dmesg’ to see syslog. 
 
-
-
-
-
-
-
-
 Output of the module
 ![Screenshot](1.png)
 ![Screenshot](2.png)
 ![Screenshot](3.png)
 ![Screenshot](4.png)
-
-
-
-
-
-
