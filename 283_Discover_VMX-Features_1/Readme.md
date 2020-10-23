@@ -5,6 +5,7 @@ Discovering VMX Features</h1><br>
  <ul>
  <li>Used VMWare fusion as a Virtual Machine </li><br>
  <li>Researched and built/compiled Linux Kernel source code and got the environment setup. </li><br>
+  <li>Researched about MSRs in the Intel dev manual. </li><br>
  <li>Implemented 283-1.c file.</li> <br>
  <li>Tested it by loading the new module and verified the output.</li></ul><br> 
 <h4>Rajakumari</h4><br>
