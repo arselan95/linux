@@ -20,7 +20,7 @@ Discovering VMX Features</h1><br>
 <h4>Configure a Linux Machine.</h4> <br>
 <ul>
 <li>Download VMWare Fusion or any VM of your choice. (or use parallels)</li> <br>
-<li>Download Ubuntu 20.04<br>
+ <li>Download Ubuntu 20.04</li><br>
 <li>Create a new VM in VMWare Fusion by dragging the .iso file which will install Ubuntu OS in the VM.</li><br>
 <li>Specs used: </li><br>
  <ul>
