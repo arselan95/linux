@@ -11,7 +11,7 @@ Discovering VMX Features</h1><br>
 <ul>
 <li>Researched about VMX virtualization features and MSRs. </li><br>
 <li>Researched Intel 64 and IA-32 Architectures Software Developer’s Manual Vol:3C about various VMX configuration MSRs to the capabilities and features as listed in the assignment which were used in the 283-1.c file implementation. </li><br>
- <li>Worked on the 283-1.c file implementation. </li>
+ <li>Worked on the 283-1.c file implementation. </li><br>
 <li> Reference: https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3c-part-3-manual.pdf</li>
 </ul><br>
  
