@@ -65,6 +65,8 @@ Discovering VMX Features</h1><br>
 
 ![Screenshot](6.png)
 
+ <h5><i>Note: Make sure you have enabled "pass through virtualization extensions" in your VM !</i></h5><br>
+
  <h4>Load the new module in the Kernel</h4><br>
  <ul>
 <li>Run command ‘sudo insmod ./cmpe283-1.ko’</li><br>
