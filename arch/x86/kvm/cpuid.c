@@ -31,6 +31,12 @@
 u32 kvm_cpu_caps[NCAPINTS] __read_mostly;
 EXPORT_SYMBOL_GPL(kvm_cpu_caps);
 
+/*for cmpe283
+ */
+extern u32 exit_counter;
+extern u64 exit_delta_tsc;
+//edit ends
+
 static u32 xstate_required_size(u64 xstate_bv, bool compacted)
 {
 	int feature_bit = 0;
@@ -371,7 +377,7 @@ void kvm_set_cpu_caps(void)
 		F(AVX512_4VNNIW) | F(AVX512_4FMAPS) | F(SPEC_CTRL) |
 		F(SPEC_CTRL_SSBD) | F(ARCH_CAPABILITIES) | F(INTEL_STIBP) |
 		F(MD_CLEAR) | F(AVX512_VP2INTERSECT) | F(FSRM) |
-		F(SERIALIZE) | F(TSXLDTRK)
+		F(SERIALIZE)
 	);
 
 	/* TSC_ADJUST and ARCH_CAPABILITIES are emulated in software. */
@@ -1081,7 +1087,48 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 
 	eax = kvm_rax_read(vcpu);
 	ecx = kvm_rcx_read(vcpu);
-	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
+	
+
+	//original
+	//kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
+
+	//edited
+//	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+//	printk(KERN_INFO "Now EAX = 0x%x after kvm_cpuid()\n", eax);	
+
+
+/* cmpe283 modification */
+        if (eax == 0x4fffffff)  /* this is for cmpe283 assignment 2 */
+        {
+            
+            kvm_rax_write(vcpu, exit_counter);
+            kvm_rcx_write(vcpu, exit_delta_tsc &0xffffffff);
+            kvm_rbx_write(vcpu,(exit_delta_tsc >> 32) & 0xffffffff);
+            
+	    kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+            printk(KERN_INFO "EAX == 0x%x after kvm_cpuid()\n", eax);
+            /*
+            eax = 0x1000;
+            ebx = 0x2000;
+            ecx = 0x3000;
+            edx = 0x4000;
+            */
+            eax = exit_counter;
+	    
+    	printk(" Exits : %u\n",eax); 
+            ecx = exit_delta_tsc & 0xffffffff;
+	    printk("cycles spent: %u/n",eax);
+            ebx = (exit_delta_tsc >> 32) & 0xffffffff;
+            
+            
+        }
+	//edit ends
+
+        else  /*** this is for properly launching a VM ***/
+        {
+	    kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+            printk(KERN_INFO "EAX == 0x%x after kvm_cpuid()\n", eax);
+        }
 	kvm_rax_write(vcpu, eax);
 	kvm_rbx_write(vcpu, ebx);
 	kvm_rcx_write(vcpu, ecx);

@@ -13,6 +13,7 @@
  *   Yaniv Kamay  <yaniv@qumranet.com>
  */
 
+#include <linux/frame.h>
 #include <linux/highmem.h>
 #include <linux/hrtimer.h>
 #include <linux/kernel.h>
@@ -21,7 +22,6 @@
 #include <linux/moduleparam.h>
 #include <linux/mod_devicetable.h>
 #include <linux/mm.h>
-#include <linux/objtool.h>
 #include <linux/sched.h>
 #include <linux/sched/smt.h>
 #include <linux/slab.h>
@@ -63,6 +63,17 @@
 #include "vmcs12.h"
 #include "vmx.h"
 #include "x86.h"
+
+/* kvm modification for cmpe283 assignment 2 */
+u32 exit_counter = 0;
+u64 exit_delta_tsc = 0;
+EXPORT_SYMBOL(exit_counter);
+EXPORT_SYMBOL(exit_delta_tsc);
+
+#define __ex(x) __kvm_handle_fault_on_reboot(x)
+#define __ex_clear(x, reg) \
+	____kvm_handle_fault_on_reboot(x, "xor " reg ", " reg)
+//edit ends
 
 MODULE_AUTHOR("Qumranet");
 MODULE_LICENSE("GPL");
@@ -5987,9 +5998,18 @@ void dump_vmcs(void)
  */
 static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 {
+
+
 	struct vcpu_vmx *vmx = to_vmx(vcpu);
 	u32 exit_reason = vmx->exit_reason;
 	u32 vectoring_info = vmx->idt_vectoring_info;
+
+	//edit283
+	 u64 start_tsc = rdtsc();
+    	u64 end_tsc = 0;
+    	u32 handle_return_value = 0;
+	exit_counter++;
+	//ends
 
 	/*
 	 * Flush logged GPAs PML buffer, this will make dirty_bitmap more
@@ -6011,7 +6031,13 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 
 	/* If guest state is invalid, start emulating */
 	if (vmx->emulation_required)
+	{	
+		/* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
+	
 		return handle_invalid_guest_state(vcpu);
+	}
 
 	if (is_guest_mode(vcpu)) {
 		/*
@@ -6028,6 +6054,10 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		nested_mark_vmcs12_pages_dirty(vcpu);
 
 		if (nested_vmx_reflect_vmexit(vcpu))
+		
+		    	/* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
 			return 1;
 	}
 
@@ -6037,6 +6067,9 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		vcpu->run->fail_entry.hardware_entry_failure_reason
 			= exit_reason;
 		vcpu->run->fail_entry.cpu = vcpu->arch.last_vmentry_cpu;
+ /* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
 	}
 
@@ -6046,6 +6079,9 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		vcpu->run->fail_entry.hardware_entry_failure_reason
 			= vmcs_read32(VM_INSTRUCTION_ERROR);
 		vcpu->run->fail_entry.cpu = vcpu->arch.last_vmentry_cpu;
+ /* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
 	}
 
@@ -6075,6 +6111,9 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		}
 		vcpu->run->internal.data[vcpu->run->internal.ndata++] =
 			vcpu->arch.last_vmentry_cpu;
+ /* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
 	}
 
@@ -6097,6 +6136,31 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		}
 	}
 
+/*** cmpe283: key part for modification ***/
+	if (exit_reason < kvm_vmx_max_exit_handlers
+	    && kvm_vmx_exit_handlers[exit_reason])
+        {
+                /* cmpe283 mod */
+		handle_return_value =  kvm_vmx_exit_handlers[exit_reason](vcpu);
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
+		/* return kvm_vmx_exit_handlers[exit_reason](vcpu); */
+                return handle_return_value;
+        }
+	else {
+		vcpu_unimpl(vcpu, "vmx: unexpected exit reason 0x%x\n",
+				exit_reason);
+		kvm_queue_exception(vcpu, UD_VECTOR);
+                /* cmpe283 mod */
+                end_tsc = rdtsc();
+                exit_delta_tsc += end_tsc - start_tsc;
+		return 1;
+	}
+}
+
+
+
+	/*
 	if (exit_fastpath != EXIT_FASTPATH_NONE)
 		return 1;
 
@@ -6135,6 +6199,8 @@ unexpected_vmexit:
 	vcpu->run->internal.data[1] = vcpu->arch.last_vmentry_cpu;
 	return 0;
 }
+*/
+
 
 /*
  * Software based L1D cache flush which is used when microcode providing
