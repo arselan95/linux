@@ -64,7 +64,7 @@
 #include "vmx.h"
 #include "x86.h"
 
-/* kvm modification for cmpe283 assignment 2 */
+/* kvm edit for cmpe283 assignment 2 */
 u32 exit_counter = 0;
 u64 exit_delta_tsc = 0;
 EXPORT_SYMBOL(exit_counter);
