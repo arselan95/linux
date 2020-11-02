@@ -31,8 +31,8 @@
 u32 kvm_cpu_caps[NCAPINTS] __read_mostly;
 EXPORT_SYMBOL_GPL(kvm_cpu_caps);
 
-/*for cmpe283
- */
+//for cmpe283
+ 
 extern u32 exit_counter;
 extern u64 exit_delta_tsc;
 //edit ends
@@ -1092,13 +1092,10 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 	//original
 	//kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
 
-	//edited
-//	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
-//	printk(KERN_INFO "Now EAX = 0x%x after kvm_cpuid()\n", eax);	
 
 
-/* cmpe283 modification */
-        if (eax == 0x4fffffff)  /* this is for cmpe283 assignment 2 */
+/* cmpe283 edit assignment 2*/
+        if (eax == 0x4fffffff)  
         {
             
             kvm_rax_write(vcpu, exit_counter);
@@ -1107,12 +1104,7 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
             
 	    kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
             printk(KERN_INFO "EAX == 0x%x after kvm_cpuid()\n", eax);
-            /*
-            eax = 0x1000;
-            ebx = 0x2000;
-            ecx = 0x3000;
-            edx = 0x4000;
-            */
+            
             eax = exit_counter;
 	    
     	printk(" Exits : %u\n",eax); 
