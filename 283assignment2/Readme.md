@@ -65,3 +65,10 @@ Modifying Instruction Behavior in KVM</h1><br>
 ![Screenshot](finaloutput.png)
 
  <h5><i>Note: Make sure you have enabled "pass through virtualization extensions" in your VM !</i></h5><br>
+ 
+ <h4>Question 3: About frequency of exits</h4><br>
+<ul>
+<li>They do not increase at a stable rate. </li>
+<li>More exits performed when I try to run other instructions such as I/O. </li>
+ <li>Full VM boot entails approximately 1818588270117 . </li>
+</ul><br>
