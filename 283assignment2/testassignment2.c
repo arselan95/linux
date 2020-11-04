@@ -1,7 +1,5 @@
 /*
- * Assignment 2 test program
- *
- * cc -Wall -Wextra -o test_assignment2 test_assignment2.c
+ * Assignment 2 test driver
  */
 
 #include <stdio.h>
