@@ -70,5 +70,5 @@ Modifying Instruction Behavior in KVM</h1><br>
 <ul>
 <li>They do not increase at a stable rate. </li>
 <li>More exits performed when I try to run other instructions such as I/O. </li>
- <li>Full VM boot entails approximately 1818588270117 . </li>
+ <li>Full VM boot entails approximately 1818588270117 exits. </li>
 </ul><br>
