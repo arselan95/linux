@@ -6032,7 +6032,7 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 	/* If guest state is invalid, start emulating */
 	if (vmx->emulation_required)
 	{	
-		/* cmpe283 mod */
+		/* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 	
@@ -6055,7 +6055,7 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 
 		if (nested_vmx_reflect_vmexit(vcpu))
 		
-		    	/* cmpe283 mod */
+		    	/* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 			return 1;
@@ -6067,7 +6067,7 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		vcpu->run->fail_entry.hardware_entry_failure_reason
 			= exit_reason;
 		vcpu->run->fail_entry.cpu = vcpu->arch.last_vmentry_cpu;
- /* cmpe283 mod */
+ 	/* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
@@ -6079,7 +6079,7 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		vcpu->run->fail_entry.hardware_entry_failure_reason
 			= vmcs_read32(VM_INSTRUCTION_ERROR);
 		vcpu->run->fail_entry.cpu = vcpu->arch.last_vmentry_cpu;
- /* cmpe283 mod */
+ 	/* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
@@ -6111,7 +6111,7 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		}
 		vcpu->run->internal.data[vcpu->run->internal.ndata++] =
 			vcpu->arch.last_vmentry_cpu;
- /* cmpe283 mod */
+ 	/* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 		return 0;
@@ -6136,22 +6136,21 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 		}
 	}
 
-/*** cmpe283: key part for modification ***/
+	/* cmpe283 edit- return the calculated time taken */
 	if (exit_reason < kvm_vmx_max_exit_handlers
 	    && kvm_vmx_exit_handlers[exit_reason])
         {
-                /* cmpe283 mod */
+                /* cmpe283 edit */
 		handle_return_value =  kvm_vmx_exit_handlers[exit_reason](vcpu);
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
-		/* return kvm_vmx_exit_handlers[exit_reason](vcpu); */
                 return handle_return_value;
         }
 	else {
 		vcpu_unimpl(vcpu, "vmx: unexpected exit reason 0x%x\n",
 				exit_reason);
 		kvm_queue_exception(vcpu, UD_VECTOR);
-                /* cmpe283 mod */
+                /* cmpe283 edit */
                 end_tsc = rdtsc();
                 exit_delta_tsc += end_tsc - start_tsc;
 		return 1;
