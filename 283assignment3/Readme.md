@@ -108,4 +108,5 @@ Instrumentation via hypercall</h1><br>
 <li>Intel SDM defines 65 exit reasons. </li>
 <li>Most frequent: I/O instruction and Triple fault. </li>
  <li>Least frequent: Exception or non maskable interrupt. </li>
+ <li>Most of them were 0. Large amount of exits and less occurences. </li>
 </ul><br>
