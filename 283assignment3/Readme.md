@@ -22,6 +22,9 @@ Instrumentation via hypercall</h1><br>
  <li>Set those (missed ones) to -1.</li><br>
  <li>Create a loop and get the exit number and number of exits which will be used in cpuid.c.</li>
  </ul><br> 
+ 
+ ![Screenshot](vmx1.png)
+ ![Screenshot](vmx2.png)
 
 
 <h5>cpuid.c</h5><br>
