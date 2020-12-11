@@ -72,7 +72,7 @@ Instrumentation via hypercall</h1><br>
 <li>Build the kvm and kvm-intel modules to test the new changes</li><br>
 <li>Run command 'sudo make modules SUBDIRS=arch/x86/kvm/'</li><br>
 
-![Screenshot](makemodules1.png)
+![Screenshot](makemodules.png)
 
 <li>Run command ‘sudo rmmod kvm’</li><br>
 <li>Run command 'sudo rmmod kvm-intel'. </li><br>
