@@ -18,6 +18,7 @@ Instrumentation via hypercall</h1><br>
  <li>In vmx.c modify the vmx_handle_exit()</li><br>
  <li>Appendix C Intel SDM defines 65 Exit Reasons. Created an array of size 65.</li><br>
   <li>vmx.h defines all the exit reasons which are handled by the linux kvm</li><br>
+ <li> https://github.com/arselan95/linux/blob/master/arch/x86/include/uapi/asm/vmx.h </li> <br>
  <li>But the exit reasons in vmx.h does not cover all the exit reasons defined in Intel SDM .</li> <br>
  <li>Set those (missed ones) to -1.</li><br>
  <li>Create a loop and get the exit number and number of exits which will be used in cpuid.c.</li>
@@ -85,9 +86,9 @@ Instrumentation via hypercall</h1><br>
 ![Screenshot](kvminfo.png)
 
 
-<li></li> <br>
-<li>Create a testassignment3.c file to test the number of exits based on the requested exit number.</li></ul><br>
+<li>Create a testassignment3.c file to test the number of exits based on the requested exit number.</li><br>
 <li>Compile and Run.</li><br>
+</ul><br>
 
 ![Screenshot](finaloutput.png)
 ![Screenshot](finaloutput2.png)
