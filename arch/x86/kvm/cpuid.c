@@ -31,10 +31,12 @@
 u32 kvm_cpu_caps[NCAPINTS] __read_mostly;
 EXPORT_SYMBOL_GPL(kvm_cpu_caps);
 
-//for cmpe283
- 
+/*for cmpe283 */
 extern u32 exit_counter;
 extern u64 exit_delta_tsc;
+extern u32 handle_return_value;
+extern u32 exit_num;
+
 //edit ends
 
 static u32 xstate_required_size(u64 xstate_bv, bool compacted)
@@ -1092,11 +1094,17 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 	//original
 	//kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
 
+	//edited
+//	kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+//	printk(KERN_INFO "Now EAX = 0x%x after kvm_cpuid()\n", eax);	
 
 
-/* cmpe283 edit assignment 2*/
-        if (eax == 0x4fffffff)  
-        {
+/* cmpe283 modification */
+
+
+       if (eax == 0x4fffffff)  /* this is for cmpe283 assignment 2 */
+	{
+
             
             kvm_rax_write(vcpu, exit_counter);
             kvm_rcx_write(vcpu, exit_delta_tsc &0xffffffff);
@@ -1104,17 +1112,38 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
             
 	    kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
             printk(KERN_INFO "EAX == 0x%x after kvm_cpuid()\n", eax);
+           
+            eax = 0x1000;
+            ebx = 0x2000;
+            ecx = 0x3000;
+            edx = 0x4000;
             
             eax = exit_counter;
 	    
     	printk(" Exits : %u\n",eax); 
             ecx = exit_delta_tsc & 0xffffffff;
 	    printk("cycles spent: %u/n",eax);
-            ebx = (exit_delta_tsc >> 32) & 0xffffffff;
+           ebx = (exit_delta_tsc >> 32) & 0xffffffff;
             
-            
-        }
+	}     
 	//edit ends
+
+//assign 3 edit start
+	
+       else if (eax  ==  0x4ffffffe){
+                if(ecx >= 0 && ecx < 62)
+        {
+	    kvm_rax_write(vcpu, exit_counter);
+            kvm_rcx_write(vcpu, exit_num);
+
+            kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, true);
+	    eax=exit_counter;
+	    ecx=exit_num;
+        }
+
+    }
+	//assign 3 edit end---
+
 
         else  /*** this is for properly launching a VM ***/
         {
@@ -1127,4 +1156,6 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 	kvm_rdx_write(vcpu, edx);
 	return kvm_skip_emulated_instruction(vcpu);
 }
+
 EXPORT_SYMBOL_GPL(kvm_emulate_cpuid);
+//added
