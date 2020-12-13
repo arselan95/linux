@@ -67,7 +67,7 @@ Nested Paging Vs Shadow Paging</h1><br>
 
  <h2>Question 3: Exit count</h2><br>
 <ul>
-<li>Exit count was expected. As VM will exit on each and every Page fault to update the tables.</li>
+<li>Increase Exit count was expected with shadow paging. As VM will exit on each and every Page fault to update the tables.</li>
 </ul><br>
 
  <h2>Question 4: The Differences</h2><br>
