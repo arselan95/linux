@@ -55,7 +55,7 @@ Nested Paging Vs Shadow Paging</h1><br>
 
  <h5><i>Note: Make sure you have enabled "pass through virtualization extensions" in your VM !</i></h5><br>
  
- <h4>Question 2: Sample print of Exit output 'with ept' and 'without ept'</h4><br>
+ <h2>Question 2: Sample print of Exit output 'with ept' and 'without ept'</h2><br>
 <ul>
 <h5> Without ept </h5>
 <li> ![Screenshot](nested.png) </li>
@@ -64,7 +64,12 @@ Nested Paging Vs Shadow Paging</h1><br>
 <li> ![Screenshot](shadow.png) </li>
 </ul><br>
 
- <h4>Question 4: The Differences</h4><br>
+ <h2>Question 3: Exit count</h2><br>
+<ul>
+<li>Exit count was expected. As VM will exit on each and every Page fault to update the tables.</li>
+</ul><br>
+
+ <h2>Question 4: The Differences</h2><br>
 <ul>
 <li>When shadow paging was turned on more exits happened. </li>
 <li>Exit count increased remarkably. </li>
