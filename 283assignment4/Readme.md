@@ -56,13 +56,14 @@ Nested Paging Vs Shadow Paging</h1><br>
  <h5><i>Note: Make sure you have enabled "pass through virtualization extensions" in your VM !</i></h5><br>
  
  <h2>Question 2: Sample print of Exit output 'with ept' and 'without ept'</h2><br>
-<ul>
+
 <h5> Without ept </h5>
-<li> ![Screenshot](nested.png) </li>
+
+![Screenshot](nested.png)
 
 <h5> With ept </h5>
-<li> ![Screenshot](shadow.png) </li>
-</ul><br>
+
+![Screenshot](shadow.png) 
 
  <h2>Question 3: Exit count</h2><br>
 <ul>
