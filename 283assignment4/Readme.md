@@ -37,7 +37,7 @@ Nested Paging Vs Shadow Paging</h1><br>
 
 <li>Check if kvm is unloaded. </li><br>
 
-![Screenshot](kvmunloaded.png)
+![Screenshot](kvm unloaded.png)
 
 <li>Run command 'insmod  /lib/modules/XXX/kernel/arch/x86/kvm/kvm-intel.ko ept=0'. </li><br>
 
