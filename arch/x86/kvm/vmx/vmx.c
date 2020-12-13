@@ -6194,7 +6194,9 @@ static int vmx_handle_exit(struct kvm_vcpu *vcpu, fastpath_t exit_fastpath)
 			if ( print_array[i].no_of_exits > 0 )
 
 			{
-				exit_num=exit_reason;
+				//exit_num=exit_reason;
+				end_tsc = rdtsc();
+                		exit_delta_tsc += end_tsc - start_tsc;
 				exit_counter = print_array[i].no_of_exits;
 				printk("exit number %s\n", exit_symbols[j].name);
 				printk("exit count %d\n", exit_counter);
